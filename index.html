@@ -1,4 +1,21 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="3D-игра на автоматизацию звука Р в связной речи: Рома идёт на ярмарку за покупками, говорит с продавцами, прогоняет ворону и катается на карусели. Автор — логопед, тгк @polliafania.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Логопедические игры">
+<meta property="og:title" content="Ярмарка в Ромашкино — звук Р в связной речи">
+<meta property="og:description" content="3D-игра на автоматизацию звука Р в связной речи: Рома идёт на ярмарку за покупками, говорит с продавцами, прогоняет ворону и катается на карусели. Автор — логопед, тгк @polliafania.">
+<meta property="og:url" content="https://polliafan-prog.github.io/games/yarmarka/">
+<meta property="og:image" content="https://polliafan-prog.github.io/games/yarmarka/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://polliafan-prog.github.io/games/yarmarka/cover.jpg">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Ярмарка в Ромашкино</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -185,6 +202,8 @@ body.playing .fsb{right:calc(68px + env(safe-area-inset-right,0px))}
 }
 @media (prefers-reduced-motion:reduce){.say-btn::before,.say-btn::after,.say-btn .d,.chip.lost{animation:none}}
 </style>
+</head>
+<body>
 <canvas id="c"></canvas>
 <div class="glow" id="glow"></div>
 
@@ -1338,4 +1357,5 @@ showcase();resize();camCur.t.copy(cam.goal);camCur.d=distFor(cam.R);cam.pitch=ca
 window.__T={jump:c=>jumpTo(c),get ch(){return curCh;},info:()=>{let m=0,t=0;scene.traverse(o=>{if(o.isMesh||o.isPoints)m++;});return JSON.stringify({calls:renderer.info.render.calls,tris:renderer.info.render.triangles,meshes:m,geoms:renderer.info.memory.geometries,QL});},said,tap:k=>wareTapped(k),get want(){return wareWant;},get choosing(){return !!wareRes;},get saying(){return !!sayRes;},get txt(){return $('sayTxt').textContent;},get mode(){return mode;},get day(){return dayT;},setSpeed:v=>SPEED=v,shot,cap:(w,t)=>{document.getElementById('hud').hidden=false;document.getElementById('list').hidden=false;chips();caption(w,t);},reset:()=>{resetWorld();baba.g.position.set(-.9,0,4.0);baba.g.rotation.set(0,.6,0);applyDay(.3);},setL:v=>{L=v;}};
 </script>
 
-</body></html>
+</body>
+</html>
