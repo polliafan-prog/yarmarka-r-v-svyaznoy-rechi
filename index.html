@@ -1,21 +1,4 @@
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="3D-игра на автоматизацию звука Р в связной речи: Рома идёт на ярмарку за покупками, говорит с продавцами, прогоняет ворону и катается на карусели. Автор — логопед, тгк @polliafania.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Логопедические игры">
-<meta property="og:title" content="Ярмарка в Ромашкино — звук Р в связной речи">
-<meta property="og:description" content="3D-игра на автоматизацию звука Р в связной речи: Рома идёт на ярмарку за покупками, говорит с продавцами, прогоняет ворону и катается на карусели. Автор — логопед, тгк @polliafania.">
-<meta property="og:url" content="https://polliafan-prog.github.io/games/yarmarka/">
-<meta property="og:image" content="https://polliafan-prog.github.io/games/yarmarka/cover.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="ru_RU">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://polliafan-prog.github.io/games/yarmarka/cover.jpg">
-<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]{display:none!important}</style>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Ярмарка в Ромашкино</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,7 +33,17 @@ button{font-family:inherit;color:inherit}
 .mid{flex:1;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
 .ib{width:48px;height:48px;border-radius:50%;border:0;background:var(--paper);box-shadow:0 3px 0 var(--shade);font-size:22px;cursor:pointer;display:grid;place-items:center;padding:0}
 .ib[aria-pressed="false"]{opacity:.55}
-.daybar{width:100%;margin-top:14px}
+.daybar{width:100%;margin-top:2px}
+.daybar{pointer-events:auto;touch-action:none;cursor:pointer;padding:12px 4px;margin-top:2px;outline:none;-webkit-user-select:none;user-select:none}
+.daybar:focus-visible .dtrack{box-shadow:0 0 0 3px var(--acc),0 2px 0 var(--shade)}
+.dtick{position:absolute;top:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:rgba(255,255,255,.9);box-shadow:0 0 0 1.5px rgba(60,40,20,.25);pointer-events:none}
+.dknob{cursor:grab;touch-action:none}
+.scrubbing .hud{z-index:9}.scrubbing .capq,.scrubbing .tap,.scrubbing .say{opacity:0}
+.dknob.drag{transition:none;cursor:grabbing;transform:scale(1.15)}
+.dlabel{position:absolute;top:26px;transform:translateX(-50%);background:var(--paper);color:var(--ink);font-size:12.5px;font-weight:800;white-space:nowrap;
+  padding:5px 12px;border-radius:999px;box-shadow:0 3px 0 var(--shade),0 6px 18px rgba(0,0,0,.12);pointer-events:none;z-index:2}
+.dlabel small{display:block;font-size:10px;font-weight:700;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em}
+
 .dtrack{position:relative;height:16px;border-radius:10px;background:linear-gradient(90deg,#bfe3f2,#fff3c4 35%,#ffd08a 62%,#f49a72 82%,#3b3f72);box-shadow:0 2px 0 var(--shade),inset 0 0 0 2px rgba(255,255,255,.6)}
 .dknob{position:absolute;top:50%;left:0;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:var(--paper);display:grid;place-items:center;font-size:20px;box-shadow:0 3px 0 var(--shade);transition:left .4s}
 .list{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;flex-basis:100%;order:3;margin-top:-6px;pointer-events:none!important;padding:0 8px}
@@ -180,7 +173,7 @@ body.playing .fsb{right:calc(68px + env(safe-area-inset-right,0px))}
 }
 @media (max-height:520px){
   .ib,.fsb{width:42px;height:42px;font-size:19px}
-  .daybar{margin-top:12px}
+  .daybar{margin-top:0}
   .list{margin-top:2px}.chip{font-size:11px;padding:2px 8px 2px 5px}
   .say-btn{width:66px;height:66px}.say-btn svg{width:40px;height:40px}
   .say-hint{padding:6px 14px}.say-hint b{font-size:15px}
@@ -192,8 +185,6 @@ body.playing .fsb{right:calc(68px + env(safe-area-inset-right,0px))}
 }
 @media (prefers-reduced-motion:reduce){.say-btn::before,.say-btn::after,.say-btn .d,.chip.lost{animation:none}}
 </style>
-</head>
-<body>
 <canvas id="c"></canvas>
 <div class="glow" id="glow"></div>
 
@@ -203,7 +194,7 @@ body.playing .fsb{right:calc(68px + env(safe-area-inset-right,0px))}
     <div class="sndwrap"><button id="bSnd" class="ib" aria-label="Звук" title="Звук">🔊</button><div id="sndPop" class="sndpop" hidden><button class="vb" data-snd aria-label="Звук" title="Звук">🔊</button><input class="vr" data-vol id="volHud" type="range" min="0" max="100" value="80" aria-label="Громкость"></div></div>
   </div>
   <div class="mid">
-    <div class="daybar" aria-hidden="true"><div class="dtrack"><div id="dKnob" class="dknob">☀️</div></div></div>
+    <div class="daybar" id="dayBar" tabindex="0" role="slider" aria-label="Перейти к другой части дня"><div class="dtrack"><div id="dKnob" class="dknob">☀️</div></div></div>
   </div>
   <div class="hud-right"><span class="fs-slot" aria-hidden="true"></span><button id="bHint" class="ib" aria-pressed="true" aria-label="Пример фразы для взрослого" title="Пример фразы для взрослого">💬</button></div>
   <div class="list" id="list" hidden></div>
@@ -922,7 +913,7 @@ function applyDay(t){dayT=t;let i=0;while(i<KF.length-2&&t>KF[i+1].t)i++;const A
   fill.intensity=.18*(1-night);clouds.material.opacity=.95-night*.55;clouds.material.emissive.copy(cl('#fff6e8','#8a7aa8',night));
   bulbMeshes.forEach(m=>m.material.emissiveIntensity=.12+dusk*1.6);porchLight.intensity=dusk*1.4;if(porchLamp)porchLamp.material.emissiveIntensity=.1+dusk*1.5;plazaLights.forEach(l=>l.intensity=dusk*.55);
   $('glow').style.opacity=.75-night*.3;
-  const dk=$('dKnob');dk.style.left=(t*100)+'%';dk.textContent=t>.86?'🌙':'☀️';}
+  const dk=$('dKnob');if(!scrub)dk.style.left=(t*100)+'%';dk.textContent=t>.86?'🌙':'☀️';}
 
 /* ---------- camera ---------- */
 const cam={goal:new V3(0,0,1),R:15,follow:null,fy:1,yawU:0,pitchU:0,zoomU:1,pitch:.5,pitchGoal:.5,yaw:0,yawGoal:0,sway:0};
@@ -1006,7 +997,7 @@ function wareTapped(k){if(!wareRes)return;const S=wareStall,it=wares[S.id][k];
     caption(S.who,'Это '+WARE_NAME[k]+'. А что в списке?',1800);}}
 
 /* ---------- scenes ---------- */
-const DAYT=[.03,.14,.26,.38,.5,.6,.7,.78];
+const DAYT=[.08,.18,.29,.4,.51,.61,.7,.78];
 async function dayTo(t1,ms){const t0=dayT;await tween(ms,t=>applyDay(lerp(t0,t1,ease(t))));}
 function talkShot(S,R){const mx=S.x+S.fx*.55,mz=S.z+S.fz*.55;shot(mx,1.2,mz,closeR(R||1.45),null,1,.1,S.ry+.8);}
 function wareShot(S){const mx=S.x+S.fx*.3,mz=S.z+S.fz*.3;shot(mx,1.0,mz,closeR(1.05),null,1,.45,S.ry);}
@@ -1039,7 +1030,7 @@ async function intro(tok){
   sfx.creak();await tween(1400,t=>setGate(ease(t)));chk(tok);
   await walkTo(guard,GUARD.x,GUARD.z,1.6);faceTo(guard,0,15);
   shot(0,.5,1,10.5,null,1,.62,0);
-  await walkTo(hero,0,9.6);chk(tok);
+  dayTo(DAYT[0],2200);await walkTo(hero,0,9.6);chk(tok);
   await speak(TXT.first);chk(tok);}
 
 async function stallEp(i,tok){const S=STALLS[i],V=vendors[S.id];
@@ -1145,7 +1136,20 @@ async function finale(tok){
 function skipToCar(){setGate(1);applyDay(DAYT[5]);gripBasket();$('list').hidden=false;chips();
   ['morkovka','karas','gorshok','tort','sharf'].forEach(k=>{const S=STALLS.find(x=>x.need===k),it=wares[S.id][k];basket.g.attach(it.g);it.g.position.set(...BSLOT[k]);it.g.rotation.set(0,0,0);it.g.scale.setScalar(BSC);basket.items[k]=it;inBasketLook(it,true);chipState(k,'got');});
   const S=STALLS[4];hero.g.position.set(S.stand[0],0,S.stand[1]);baba.g.position.set(HOME.door[0],PORCH_Y,HOME.door[1]);baba.g.visible=false;}
-async function runGame(){const tok=++runTok;try{if(QS.get('from')==='car'){skipToCar();await carouselEp(tok);await finale(tok);return;}await intro(tok);for(let i=0;i<STALLS.length;i++)await stallEp(i,tok);await carouselEp(tok);await finale(tok);}catch(e){if(!(e instanceof Abort))console.error(e);}}
+function setupChapter(c){setGate(1);setDoor(0);baba.g.visible=false;baba.g.position.set(HOME.door[0],PORCH_Y,HOME.door[1]);
+  gripBasket();$('list').hidden=false;chips();const done=Math.min(c-1,5);
+  for(let k=0;k<done;k++){const S=STALLS[k],it=wares[S.id][S.need];basket.g.attach(it.g);it.g.position.set(...BSLOT[S.need]);it.g.rotation.set(0,S.need==='sharf'?.4:0,0);it.g.scale.setScalar(BSC);basket.items[S.need]=it;inBasketLook(it,true);chipState(S.need,'got');}
+  let x=0,z=9.6,ry=Math.PI;if(c>=2&&c<=6){const S=STALLS[c-2];[x,z]=S.stand;ry=Math.atan2(S.x-x,S.z-z);}else if(c===7){[x,z]=car.stand;ry=0;}
+  hero.g.position.set(x,Y(x,z),z);hero.g.rotation.set(0,ry,0);applyDay(CHAPTERS[c].t);
+  shot(0,0,0,closeR(2.6),hero.g,.7,.38,c===1?0:Math.atan2(CENTER.x-x,CENTER.z+2-z));snapCam();}
+function snapCam(){const g=cam.follow?cam.follow.getWorldPosition(new V3()).add(new V3(0,cam.fy,0)):cam.goal;camCur.t.copy(g);updateCamera(0);camCur.d=distFor(cam.R);cam.yaw=cam.yawGoal;cam.pitch=cam.pitchGoal;cam.yawU=cam.pitchU=0;}
+async function runFrom(c){const tok=++runTok;curCh=c;try{
+    if(c===0){await intro(tok);c=1;}
+    for(let i=c-1;i<STALLS.length;i++){curCh=i+1;await stallEp(i,tok);}
+    if(c<=6){curCh=6;await carouselEp(tok);}
+    curCh=7;await finale(tok);}catch(e){if(!(e instanceof Abort))console.error(e);}}
+function jumpTo(c){if(mode!=='play')return;$('win').hidden=true;$('confirm').hidden=true;resetWorld();if(c>0)setupChapter(c);sfx.bubble();runFrom(c);}
+async function runGame(){if(QS.get('from')==='car'){resetWorld();setupChapter(6);return runFrom(6);}return runFrom(0);}
 
 /* ---------- reset / start ---------- */
 function resetHero(){scene.attach(hero.g);hero.g.scale.setScalar(hero.base);hero.g.rotation.set(0,0,0);hero.state='';hero.sitT=hero.sit=0;hero.walking=false;hero.hopY=0;}
@@ -1156,7 +1160,7 @@ function resetWorld(){runTok++;TW.length=0;sayRes=null;wareRes=null;$('say').hid
   setGate(0);setDoor(0);guard.g.position.set(GUARD.x,0,GUARD.z);guard.g.rotation.set(0,Math.PI,0);guard.state='';
   baba.g.visible=true;baba.state='';P_.forEach(A=>{A.hopY=0;A.walking=false;});
   fwOn=false;fws.forEach(f=>scene.remove(f.m));fws.length=0;parts.forEach(p=>scene.remove(p.m));parts.length=0;
-  applyDay(DAYT[0]);$('list').hidden=true;cam.yawU=0;cam.pitchU=0;cam.zoomU=1;}
+  applyDay(0);$('list').hidden=true;cam.yawU=0;cam.pitchU=0;cam.zoomU=1;}
 function showcase(){resetWorld();applyDay(.86);setGate(1);
   hero.g.position.set(.2,0,4.2);hero.g.rotation.set(0,-.7,0);gripBasket();
   ['morkovka','karas','gorshok','tort','sharf'].forEach(k=>{const S=STALLS.find(s=>s.need===k),it=wares[S.id][k];basket.g.attach(it.g);it.g.position.set(...BSLOT[k]);it.g.rotation.set(0,0,0);it.g.scale.setScalar(BSC);basket.items[k]=it;inBasketLook(it,true);});
@@ -1165,6 +1169,26 @@ function showcase(){resetWorld();applyDay(.86);setGate(1);
   if(isPortrait())shot(-.35,.85,4.1,1.35,null,1,.22,-.2);else shot(-1.4,1.25,3.2,3.6,null,1,.24,-.3);}
 function startGame(){resetWorld();mode='play';document.body.classList.add('playing');$('intro').hidden=true;$('win').hidden=true;$('hud').hidden=false;cam.sway=0;startMusic();runGame();}
 function toMenu(){mode='intro';document.body.classList.remove('playing');$('hud').hidden=true;$('win').hidden=true;$('intro').hidden=false;showcase();}
+
+
+/* ---------- day bar: drag the sun to jump to any part of the day ---------- */
+const CHAPTERS=[{t:0,label:'Дома у бабушки'},{t:.08,label:'Тётя Тамара'},{t:.18,label:'Дед Захар'},{t:.29,label:'Гончар Макар'},{t:.4,label:'Тётя Марта'},{t:.51,label:'Рустам'},{t:.61,label:'Карусель'},{t:.78,label:'Вечер, фейерверк'}];
+let scrub=null,curCh=0;
+(function initScrub(){const bar=$('dayBar'),tr=bar.querySelector('.dtrack'),kn=$('dKnob');
+  CHAPTERS.forEach(c=>{const d=document.createElement('i');d.className='dtick';d.style.left=(c.t*100)+'%';tr.insertBefore(d,kn);});
+  const lab=document.createElement('span');lab.className='dlabel';lab.hidden=true;tr.appendChild(lab);
+  const nearest=t=>{let b=0;CHAPTERS.forEach((c,i)=>{if(Math.abs(c.t-t)<Math.abs(CHAPTERS[b].t-t))b=i;});return b;};
+  const show=(t,b)=>{document.body.classList.add('scrubbing');kn.classList.add('drag');kn.style.left=(t*100)+'%';lab.hidden=false;lab.style.left=(CHAPTERS[b].t*100)+'%';lab.innerHTML='<small>перейти</small>'+CHAPTERS[b].label;
+    const r=tr.getBoundingClientRect(),lw=lab.offsetWidth/2,x=r.left+CHAPTERS[b].t*r.width;lab.style.marginLeft=(x-lw<6?6-(x-lw):x+lw>innerWidth-6?innerWidth-6-(x+lw):0)+'px';};
+  const hide=()=>{document.body.classList.remove('scrubbing');lab.hidden=true;kn.classList.remove('drag');kn.style.left=(dayT*100)+'%';};
+  const move=e=>{const r=tr.getBoundingClientRect(),t=clamp((e.clientX-r.left)/r.width,0,1);scrub.b=nearest(t);scrub.moved=scrub.moved||Math.abs(e.clientX-scrub.x0)>4;show(t,scrub.b);};
+  bar.addEventListener('pointerdown',e=>{if(mode!=='play')return;e.preventDefault();e.stopPropagation();try{bar.setPointerCapture(e.pointerId);}catch(_){}scrub={b:curCh,x0:e.clientX,moved:false};move(e);});
+  bar.addEventListener('pointermove',e=>{if(scrub)move(e);});
+  bar.addEventListener('pointerup',e=>{if(!scrub)return;const b=scrub.b;scrub=null;hide();jumpTo(b);});
+  bar.addEventListener('pointercancel',()=>{scrub=null;hide();});
+  bar.addEventListener('keydown',e=>{if(mode!=='play')return;if(e.key==='ArrowRight'&&curCh<CHAPTERS.length-1){e.preventDefault();jumpTo(curCh+1);}
+    else if(e.key==='ArrowLeft'&&curCh>0){e.preventDefault();jumpTo(curCh-1);}});
+})();
 
 /* ---------- audio ---------- */
 let AC=null,master=null,musicGain=null,noiseBuf=null,soundOn=true,volume=.8;
@@ -1311,8 +1335,7 @@ function loop(now){requestAnimationFrame(loop);const raw=(now-last)/1000;const r
 buildTerrain();buildWorld();buildSky();buildGate();buildWares();buildPeople();buildBasket();buildCrow();buildCarousel();buildBooth();buildRing();
 if(document.fonts&&document.fonts.load)document.fonts.load('40px Kurale').then(()=>signCanv.forEach(drawSign)).catch(()=>{});
 showcase();resize();camCur.t.copy(cam.goal);camCur.d=distFor(cam.R);cam.pitch=cam.pitchGoal;cam.yaw=cam.yawGoal;requestAnimationFrame(loop);
-window.__T={info:()=>{let m=0,t=0;scene.traverse(o=>{if(o.isMesh||o.isPoints)m++;});return JSON.stringify({calls:renderer.info.render.calls,tris:renderer.info.render.triangles,meshes:m,geoms:renderer.info.memory.geometries,QL});},said,tap:k=>wareTapped(k),get want(){return wareWant;},get choosing(){return !!wareRes;},get saying(){return !!sayRes;},get txt(){return $('sayTxt').textContent;},get mode(){return mode;},get day(){return dayT;},setSpeed:v=>SPEED=v,shot,cap:(w,t)=>{document.getElementById('hud').hidden=false;document.getElementById('list').hidden=false;chips();caption(w,t);},reset:()=>{resetWorld();baba.g.position.set(-.9,0,4.0);baba.g.rotation.set(0,.6,0);applyDay(.3);},setL:v=>{L=v;}};
+window.__T={jump:c=>jumpTo(c),get ch(){return curCh;},info:()=>{let m=0,t=0;scene.traverse(o=>{if(o.isMesh||o.isPoints)m++;});return JSON.stringify({calls:renderer.info.render.calls,tris:renderer.info.render.triangles,meshes:m,geoms:renderer.info.memory.geometries,QL});},said,tap:k=>wareTapped(k),get want(){return wareWant;},get choosing(){return !!wareRes;},get saying(){return !!sayRes;},get txt(){return $('sayTxt').textContent;},get mode(){return mode;},get day(){return dayT;},setSpeed:v=>SPEED=v,shot,cap:(w,t)=>{document.getElementById('hud').hidden=false;document.getElementById('list').hidden=false;chips();caption(w,t);},reset:()=>{resetWorld();baba.g.position.set(-.9,0,4.0);baba.g.rotation.set(0,.6,0);applyDay(.3);},setL:v=>{L=v;}};
 </script>
 
-</body>
-</html>
+</body></html>
