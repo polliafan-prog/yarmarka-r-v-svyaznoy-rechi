@@ -1,4 +1,21 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="3D-игра на автоматизацию звука Р в связной речи: Рома идёт на ярмарку за покупками, говорит с продавцами, прогоняет ворону и катается на карусели. Автор — логопед, тгк @polliafania.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Логопедические игры">
+<meta property="og:title" content="Ярмарка в Ромашкино — звук Р в связной речи">
+<meta property="og:description" content="3D-игра на автоматизацию звука Р в связной речи: Рома идёт на ярмарку за покупками, говорит с продавцами, прогоняет ворону и катается на карусели. Автор — логопед, тгк @polliafania.">
+<meta property="og:url" content="https://polliafan-prog.github.io/games/yarmarka/">
+<meta property="og:image" content="https://polliafan-prog.github.io/games/yarmarka/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://polliafan-prog.github.io/games/yarmarka/cover.jpg">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Ярмарка в Ромашкино</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,6 +192,8 @@ body.playing .fsb{right:calc(68px + env(safe-area-inset-right,0px))}
 }
 @media (prefers-reduced-motion:reduce){.say-btn::before,.say-btn::after,.say-btn .d,.chip.lost{animation:none}}
 </style>
+</head>
+<body>
 <canvas id="c"></canvas>
 <div class="glow" id="glow"></div>
 
@@ -249,14 +268,14 @@ body.playing .fsb{right:calc(68px + env(safe-area-inset-right,0px))}
    ========================================================= */
 const TXT={
   home:['Ярмарка в Ромашкино!','Бабушка Варвара даёт Роме корзину.','Утром бабушка Варвара даёт Роме корзину и список покупок.'],
-  list:['Морковка и карась.','Нужно купить морковку, карася и горшок.','Нужно купить морковку, карася, горшок, торт и шарф.'],
+  list:['Морковка, карась, горшок, торт и шарф.','Нужно купить морковку, карася, горшок, торт и шарф.','В списке морковка, карась, горшок, торт и шарф. Нужно всё купить!'],
   gate:['Здравствуйте, сторож!','Здравствуйте, сторож Гера! Откройте ворота!','Здравствуйте, сторож Гера! Откройте ворота, Рома торопится на ярмарку!'],
   first:['За морковкой!','Рома идёт за морковкой.','Рома торопится к ящикам с морковкой и помидорами.'],
   carGo:['К карусели!','Рома идёт к карусели.','Рома торопится к карусели и к Петрушке!'],
   car:['Карусель крутится!','Рома садится на рыжего коня. Карусель крутится быстро-быстро!','Рома садится на рыжего коня, и карусель крутится быстро-быстро!'],
   riddle:['Морковка!','Это морковка!','Это морковка! Её ботва наверху, а морковка внизу.'],
   fire:['Фейерверк!','Над ярмаркой фейерверк!','Вечер. Над ярмаркой яркий фейерверк!'],
-  basket:['Морковка, карась, горшок.','В корзине морковка, карась, горшок, торт и шарф.','Бабушка Варвара, в корзине морковка, карась, горшок, торт и шарф!']
+  basket:['Морковка, карась, горшок, торт и шарф.','В корзине морковка, карась, горшок, торт и шарф.','Бабушка Варвара, в корзине морковка, карась, горшок, торт и шарф!'],
 };
 const CROW=[
   {after:1,item:'morkovka',
@@ -273,7 +292,7 @@ const POT_ICON='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7b
 const STALLS=[
   {id:'tamara',x:-7.6,z:.6,need:'morkovka',icon:'🥕',chip:'Морковка',wares:['pomidor','morkovka','goroh','kartoshka'],sign:'ОВОЩИ',aw:['#d0563f','#fff3e0'],coins:2,gen:'тёти Тамары',who:'Тётя Тамара',
    reply:'Вот морковка! Две монетки.',
-   p1:['Морковка, помидоры, горох.','Тётя Тамара торгует овощами.','У тёти Тамары в ящиках морковка, помидоры, горох и картошка.'],
+   p1:['Помидоры, морковка, горох и картошка.','У тёти Тамары помидоры, морковка, горох и картошка.','Тётя Тамара торгует овощами. У тёти Тамары помидоры, морковка, горох и картошка.'],
    p2:['Дайте морковку!','Тётя Тамара, будьте добры, морковку!','Тётя Тамара, будьте добры, сочную хрустящую морковку!'],
    p3:['Морковка в корзине.','Морковка сочная и хрустящая.','Тамара продаёт Роме сочную морковку. Морковка в корзине!'],
    fin:['Это тётя Тамара.','Тётя Тамара продаёт морковку.','Утром тётя Тамара продаёт Роме сочную морковку.'],
@@ -281,28 +300,28 @@ const STALLS=[
   {id:'zahar',x:-5.4,z:-5.6,need:'karas',icon:'🐟',chip:'Карась',wares:['raki','karas','krab'],sign:'РЫБА',aw:['#4f7fb3','#f2f6fb'],coins:2,gen:'деда Захара',who:'Дед Захар',
    reply:'Карась стоит две монетки. Держи!',
    go:['К Захару!','Рома идёт к рыбаку Захару.','Рома торопится к рыбаку Захару: нужно купить карася.'],
-   p1:['Карась и раки.','У рыбака Захара карась и раки.','Дед Захар — рыбак. У Захара бочка с рыбой, а ещё карась, раки и краб.'],
+   p1:['Раки, карась и краб.','У деда Захара раки, карась и краб.','Дед Захар — рыбак. У Захара бочка с рыбой, раки, карась и краб.'],
    p2:['Дайте карася!','Дедушка Захар, будьте добры, карася!','Дедушка Захар, почём карась? Будьте добры, крупного карася!'],
    p3:['Карась в корзине.','Карась жирный и крупный.','Захар продаёт Роме жирного карася. Карась в корзине!'],
    fin:['Это дед Захар.','Дед Захар продаёт карася.','Рыбак Захар продаёт Роме жирного карася.']},
   {id:'makar',x:0,z:-7.9,need:'gorshok',icon:'🏺',iconImg:POT_ICON,chip:'Горшок',wares:['kruzhka','gorshok','tarelka'],sign:'ГОНЧАР',aw:['#c98a3a','#fff1d6'],coins:3,gen:'Макара',who:'Гончар Макар',
    reply:'Вот горшок. Держи аккуратно!',
    go:['К гончару!','Рома идёт к гончару Макару.','Рома торопится к гончару Макару: нужно купить горшок.'],
-   p1:['Горшок и кружка.','У гончара Макара горшки и кружки.','У гончара Макара горшки для растений, кружки и кувшины.'],
+   p1:['Кружка, горшок и кувшин.','У гончара Макара кружка, горшок и кувшин.','Гончар Макар делает посуду. У Макара кружка, горшок и кувшин.'],
    p2:['Дайте горшок!','Макар, будьте добры, горшок!','Макар, будьте добры, большой оранжевый горшок для растений!'],
    p3:['Горшок в корзине.','Горшок большой и оранжевый.','Макар продаёт Роме оранжевый горшок для растений. Горшок в корзине!'],
    fin:['Это гончар Макар.','Гончар Макар продаёт горшок.','Гончар Макар продаёт Роме оранжевый горшок для растений.']},
   {id:'marta',x:5.4,z:-5.6,need:'tort',icon:'🍰',chip:'Торт',wares:['pirozhok','tort','baranki','vatrushka'],sign:'ТОРТЫ',aw:['#dc98aa','#fff4f6'],coins:3,gen:'тёти Марты',who:'Тётя Марта',
    reply:'Возьми, Рома. Вот торт!',
    go:['К Марте!','Рома идёт к тёте Марте.','Рома торопится к тёте Марте: нужно купить торт.'],
-   p1:['Торт и баранки.','У тёти Марты торты, пирожки и баранки.','У тёти Марты торт с грушей, пирожки с творогом, баранки и ватрушки.'],
+   p1:['Пирожки, торт, баранки и ватрушки.','У тёти Марты пирожки, торт, баранки и ватрушки.','Тётя Марта печёт пироги. У тёти Марты пирожки, торт, баранки и ватрушки.'],
    p2:['Дайте торт!','Тётя Марта, будьте добры, торт с грушей!','Тётя Марта, будьте добры, большой торт с грушей!'],
    p3:['Торт в корзине.','Торт с грушей. Вкусно!','Марта продаёт Роме торт с грушей. Торт в корзине!'],
    fin:['Это тётя Марта.','Тётя Марта продаёт торт.','Тётя Марта продаёт Роме торт с грушей.']},
   {id:'rustam',x:7.6,z:.6,need:'sharf',icon:'🧣',chip:'Шарф',wares:['baraban','sharf','truba','garmoshka'],sign:'ИГРУШКИ',aw:['#5e9a55','#f6f3df'],coins:5,gen:'Рустама',who:'Рустам',
    reply:'Шарф стоит пять монеток. Держи!',
    go:['К Рустаму!','Рома идёт к торговцу Рустаму.','Рома торопится к торговцу Рустаму: нужно купить шарф.'],
-   p1:['Барабан и труба.','Рустам продаёт барабаны, трубы и гармошки.','Торговец Рустам продаёт барабаны, трубы, гармошки и шарфы.'],
+   p1:['Барабан, шарф, труба и гармошка.','У Рустама барабан, шарф, труба и гармошка.','Рустам — торговец. У Рустама барабан, шарф, труба и гармошка.'],
    p2:['Дайте шарф!','Рустам, будьте добры, красный шарф!','Рустам, будьте добры, красный шарф с бахромой. Это подарок бабушке!'],
    p3:['Тра-та-та!','Рома играет на барабане: тра-та-та!','Рома покупает шарф и играет на барабане: тра-та-та!'],
    fin:['Это Рустам.','Рустам продаёт шарф.','Рустам продаёт Роме красный шарф с бахромой.']}
@@ -1295,4 +1314,5 @@ showcase();resize();camCur.t.copy(cam.goal);camCur.d=distFor(cam.R);cam.pitch=ca
 window.__T={info:()=>{let m=0,t=0;scene.traverse(o=>{if(o.isMesh||o.isPoints)m++;});return JSON.stringify({calls:renderer.info.render.calls,tris:renderer.info.render.triangles,meshes:m,geoms:renderer.info.memory.geometries,QL});},said,tap:k=>wareTapped(k),get want(){return wareWant;},get choosing(){return !!wareRes;},get saying(){return !!sayRes;},get txt(){return $('sayTxt').textContent;},get mode(){return mode;},get day(){return dayT;},setSpeed:v=>SPEED=v,shot,cap:(w,t)=>{document.getElementById('hud').hidden=false;document.getElementById('list').hidden=false;chips();caption(w,t);},reset:()=>{resetWorld();baba.g.position.set(-.9,0,4.0);baba.g.rotation.set(0,.6,0);applyDay(.3);},setL:v=>{L=v;}};
 </script>
 
-</body></html>
+</body>
+</html>
